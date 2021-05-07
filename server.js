@@ -11,18 +11,6 @@ let isDev = process.env.NODE_ENV !== 'prod';
 
 const app = express();
 
-// Certificate
-if(!isDev) {
-    const sslPK = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/privkey.pem', 'utf8');
-    const sslCert = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/cert.pem', 'utf8');
-    const sslCA = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/chain.pem', 'utf8');
-    const credentials = {
-        key: sslPK,
-        cert: sslCert,
-        ca: sslCA
-    };
-}
-
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.htm'));
@@ -46,6 +34,15 @@ httpServer.listen(80, () => {
 });
 
 if(!isDev) {
+    const sslPK = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/privkey.pem', 'utf8');
+    const sslCert = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/cert.pem', 'utf8');
+    const sslCA = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/chain.pem', 'utf8');
+    const credentials = {
+        key: sslPK,
+        cert: sslCert,
+        ca: sslCA
+    };
+
     const httpsServer = https.createServer(credentials, app);
     httpsServer.listen(443, () => {
         console.log(`[mgg-comingsoon] HTTPS server running.`);
