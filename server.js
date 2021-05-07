@@ -11,7 +11,7 @@ app.get('/discord', (req, res) => {
     res.redirect("https://discord.gg/vcr7Fk6MT6");
 });
 
-app.use(express.static('public'));
+app.use(express.static('public', { dotfiles: 'allow' }));
 
 app.listen(port, () => {
     console.log(`[mgg-comingsoon] Server running on port ${port}`);
