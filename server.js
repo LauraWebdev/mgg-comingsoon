@@ -9,6 +9,9 @@ const forceSecure = require('express-force-https');
 
 let isDev = process.env.NODE_ENV || 'development' === 'development';
 
+console.log(process.env.NODE_ENV);
+console.log(isDev);
+
 const app = express();
 
 // Certificate
