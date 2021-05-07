@@ -7,12 +7,12 @@ const https = require('https');
 const express = require('express');
 const forceSecure = require('express-force-https');
 
-let isDev = () => process.env.NODE_ENV || 'development' === 'development';
+let isDev = process.env.NODE_ENV !== 'prod';
 
 const app = express();
 
 // Certificate
-if(!isDev()) {
+if(!isDev) {
     const sslPK = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/privkey.pem', 'utf8');
     const sslCert = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/cert.pem', 'utf8');
     const sslCA = fs.readFileSync('/etc/letsencrypt/live/mygarage.games/chain.pem', 'utf8');
@@ -35,7 +35,7 @@ app.get('/discord', (req, res) => {
 app.use(express.static('public', { dotfiles: 'allow' }));
 
 // HTTP to HTTPS redirect
-if(!isDev()) {
+if(!isDev) {
     app.use(forceSecure);
 }
 
@@ -45,7 +45,7 @@ httpServer.listen(80, () => {
     console.log(`[mgg-comingsoon] HTTP server running.`);
 });
 
-if(!isDev()) {
+if(!isDev) {
     const httpsServer = https.createServer(credentials, app);
     httpsServer.listen(443, () => {
         console.log(`[mgg-comingsoon] HTTPS server running.`);
