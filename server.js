@@ -7,7 +7,7 @@ const https = require('https');
 const express = require('express');
 const forceSecure = require('express-force-https');
 
-let isDev = process.env.NODE_ENV || 'development' === 'development';
+let isDev = () => process.env.NODE_ENV || 'development' === 'development';
 
 console.log(process.env.NODE_ENV);
 console.log(isDev);
