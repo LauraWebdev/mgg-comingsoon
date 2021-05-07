@@ -22,7 +22,7 @@ a:hover {
   width: 90%;
   max-width: 700px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 50px 0px;
   display: grid;
   grid-gap: 50px;
 }
@@ -30,7 +30,8 @@ a:hover {
   text-align: center;
 }
 .wrapper header .logo {
-  height: 60px;
+  max-width: 60%;
+  max-height: 60px;
 }
 .wrapper main {
   display: grid;
