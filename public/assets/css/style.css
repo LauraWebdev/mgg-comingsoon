@@ -1,0 +1,70 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  background: #C7DEE8;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+a {
+  color: #1e91c7;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.wrapper {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 50px;
+  display: grid;
+  grid-gap: 50px;
+}
+.wrapper header {
+  text-align: center;
+}
+.wrapper header .logo {
+  height: 60px;
+}
+.wrapper main {
+  display: grid;
+  grid-gap: 25px;
+}
+.wrapper main section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-gap: 15px;
+}
+.wrapper main section h1 {
+  font-size: 24px;
+}
+.wrapper main section p {
+  line-height: 1.5em;
+}
+.wrapper footer .disclaimer {
+  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5em;
+  margin-bottom: 15px;
+}
+.wrapper footer .copyright {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 12px;
+}
+.wrapper footer .copyright a {
+  color: #653366;
+}
