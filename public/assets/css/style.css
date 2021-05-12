@@ -7,7 +7,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  background: #C7DEE8;
+  background: #f1f1f1;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
 }
@@ -20,7 +20,7 @@ a:hover {
 }
 .wrapper {
   width: 90%;
-  max-width: 700px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 50px 0px;
   display: grid;
@@ -35,20 +35,51 @@ a:hover {
 }
 .wrapper main {
   display: grid;
-  grid-gap: 25px;
+  grid-gap: 50px;
 }
-.wrapper main section {
+.wrapper main .screenshots {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: 1fr 1fr;
+}
+.wrapper main .screenshots section {
+  width: 100%;
+  height: 240px;
+  border-radius: 6px;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center top;
+  transition: 0.2s ease-in-out transform;
+}
+.wrapper main .screenshots section:nth-child(1) {
+  background-image: url('../img/screenshot1.png');
+}
+.wrapper main .screenshots section:nth-child(2) {
+  background-image: url('../img/screenshot2.png');
+}
+.wrapper main .screenshots section:nth-child(3) {
+  background-image: url('../img/screenshot3.png');
+}
+.wrapper main .screenshots section:nth-child(4) {
+  background-image: url('../img/screenshot4.png');
+}
+.wrapper main .screenshots section:hover {
+  z-index: 50;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.wrapper main .qnas section {
   background: #fff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 6px;
   box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 20px;
 }
-.wrapper main section h1 {
+.wrapper main .qnas section h1 {
   font-size: 24px;
 }
-.wrapper main section p {
+.wrapper main .qnas section p {
   line-height: 1.5em;
 }
 .wrapper footer .disclaimer {
@@ -68,4 +99,29 @@ a:hover {
 }
 .wrapper footer .copyright a {
   color: #653366;
+}
+.lightbox {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 100;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
+.lightbox.active {
+  display: flex;
+}
+@media screen and (max-width: 520px) {
+  .wrapper main .screenshots {
+    grid-template-columns: 1fr;
+  }
 }
