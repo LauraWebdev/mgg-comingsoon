@@ -12,6 +12,21 @@ console.log(`[mgg-comingsoon] Starting in ENV ${process.env.NODE_ENV} (isDev=${i
 
 const app = express();
 
+// HTTP to HTTPS redirect
+if(!isDev) {
+    console.log(`[mgg-comingsoon] Using HTTPS redirect.`);
+
+    app.use(function(req, res, next) {
+        let schema = req.headers['x-forwarded-proto'];
+
+        if (schema === 'https') {
+            next();
+        } else {
+            res.redirect('https://' + req.headers.host + req.url);
+        }
+    });
+}
+
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.htm'));
@@ -22,23 +37,6 @@ app.get('/discord', (req, res) => {
 });
 
 app.use(express.static('public', { dotfiles: 'allow' }));
-
-// HTTP to HTTPS redirect
-if(!isDev) {
-    console.log(`[mgg-comingsoon] Using HTTPS redirect.`);
-
-    app.use(function(req, res, next) {
-        let schema = req.headers['x-forwarded-proto'];
-
-        console.log(`[mgg-comingsoon] ${schema}`);
-
-        if (schema === 'https') {
-            next();
-        } else {
-            res.redirect('https://' + req.headers.host + req.url);
-        }
-    });
-}
 
 // Servers
 const httpServer = http.createServer(app);
