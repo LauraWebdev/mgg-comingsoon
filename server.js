@@ -17,11 +17,7 @@ if(!isDev) {
     console.log(`[mgg-comingsoon] Using HTTPS redirect.`);
 
     app.use(function(req, res, next) {
-        let schema = req.headers['x-forwarded-proto'];
-
-        console.log(schema);
-
-        if (schema === 'https') {
+        if (req.secure) {
             next();
         } else {
             res.redirect('https://' + req.headers.host + req.url);
