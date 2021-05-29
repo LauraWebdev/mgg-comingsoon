@@ -8,6 +8,8 @@ const express = require('express');
 
 let isDev = process.env.NODE_ENV !== 'prod';
 
+console.log(`[mgg-comingsoon] Starting in ENV ${isDev}`);
+
 const app = express();
 
 // Routes
@@ -23,6 +25,8 @@ app.use(express.static('public', { dotfiles: 'allow' }));
 
 // HTTP to HTTPS redirect
 if(!isDev) {
+    console.log(`[mgg-comingsoon] Using HTTPS redirect.`);
+
     app.use(function(req, res, next) {
         let schema = req.headers['x-forwarded-proto'];
 
