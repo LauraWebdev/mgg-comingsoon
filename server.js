@@ -5,7 +5,6 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const express = require('express');
-const forceSecure = require('express-force-https');
 
 let isDev = process.env.NODE_ENV !== 'prod';
 
@@ -24,7 +23,15 @@ app.use(express.static('public', { dotfiles: 'allow' }));
 
 // HTTP to HTTPS redirect
 if(!isDev) {
-    app.use(forceSecure);
+    app.use(function(req, res, next) {
+        let schema = req.headers['x-forwarded-proto'];
+
+        if (schema === 'https') {
+            next();
+        } else {
+            res.redirect('https://' + req.headers.host + req.url);
+        }
+    });
 }
 
 // Servers
