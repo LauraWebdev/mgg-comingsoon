@@ -30,6 +30,8 @@ if(!isDev) {
     app.use(function(req, res, next) {
         let schema = req.headers['x-forwarded-proto'];
 
+        console.log(`[mgg-comingsoon] ${schema}`);
+
         if (schema === 'https') {
             next();
         } else {
