@@ -8,7 +8,7 @@ const express = require('express');
 
 let isDev = process.env.NODE_ENV !== 'prod';
 
-console.log(`[mgg-comingsoon] Starting in ENV ${isDev}`);
+console.log(`[mgg-comingsoon] Starting in ENV ${process.env.NODE_ENV} (isDev=${isDev})`);
 
 const app = express();
 
